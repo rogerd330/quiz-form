@@ -1,0 +1,94 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Quiz Form</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<script src="https://use.fontawesome.com/83ba41554d.js"></script>
+
+	<style>
+
+		.correct {
+			color: #009900;
+			font-size: 20px;
+		}
+
+		.wrong {
+			color: #990000;
+			font-size: 20px;
+		}
+
+	</style>
+</head>
+<body>
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+				
+				<h1>Quiz Form</h1>
+
+				<form>
+				<p>
+				<label class="form-label">Q1. What color is the sky?</label>
+				<input class="form-control" type="text" id="answer1" placeholder="Type your answer...">
+				<div id="grade1"></div>
+				</p>
+
+				<p>
+				<label class="form-label">Q2. What animal says "oink"?</label>
+				<input class="form-control" type="text" id="answer2" placeholder="Type your answer...">
+				<div id="grade2"></div>
+				</p>
+
+				</form>
+
+				<p>
+					<button id="checkAnswers" class="btn btn-info">Check Answers</button>
+					<button id="resetForm" class="btn btn-secondary">Reset Form</button>
+				</p>
+				
+			</div>
+		</div>
+	</div>
+
+	<script>
+
+		document.getElementById("checkAnswers").addEventListener('click', checkAnswer);
+		document.getElementById("resetForm").addEventListener('click', resetForm);
+
+		function checkAnswer() {
+			let answers = ['blue', 'pig'];
+
+			for (var i = 0; i < answers.length; i++) {
+
+				let fieldId = i + 1;
+
+				let answer = document.getElementById('answer' + fieldId).value;
+				let grade = document.getElementById('grade' + fieldId);
+
+				if (answer == answers[i]) {
+					// it's right
+					grade.innerHTML = '<i class="fa fa-thumbs-up correct" aria-hidden="true"></i>';
+				}
+				else {
+					// it's wrong
+					grade.innerHTML = '<i class="fa fa-thumbs-down wrong" aria-hidden="true"></i>';
+				}
+			}
+		}
+
+		function resetForm() {
+
+			document.getElementById('answer1').value = '';
+			document.getElementById('grade1').innerHTML = '';
+
+			document.getElementById('answer2').value = '';
+			document.getElementById('grade2').innerHTML = '';
+		}
+
+	</script>
+	
+</body>
+</html>
